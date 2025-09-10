@@ -9,11 +9,11 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 // Caminhos simplificados, sem o PLP extra
-                "${workspaceFolder}/main.cpp",
-                "${workspaceFolder}/Planner.cpp",
-                "${workspaceFolder}/Meta.cpp",
-                "${workspaceFolder}/Tarefa.cpp",
-                "${workspaceFolder}/Lembrete.cpp",
+                "${workspaceFolder}/PLP/main.cpp",
+                "${workspaceFolder}/PLP/Planner.cpp",
+                "${workspaceFolder}/PLP/Meta.cpp",
+                "${workspaceFolder}/PLP/Tarefa.cpp",
+                "${workspaceFolder}/PLP/Lembrete.cpp",
                 "-o",
                 // Coloca o executável na pasta raiz do projeto
                 "${workspaceFolder}/planner.exe"

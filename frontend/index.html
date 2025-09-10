@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner Virtual</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-calendar-alt"></i> Planner Virtual</h1>
+            <p>Gerencie suas metas, tarefas e lembretes de forma eficiente</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="metas">
+                <i class="fas fa-bullseye"></i> Metas
+            </button>
+            <button class="tab-btn" data-tab="tarefas">
+                <i class="fas fa-tasks"></i> Tarefas
+            </button>
+            <button class="tab-btn" data-tab="lembretes">
+                <i class="fas fa-bell"></i> Lembretes
+            </button>
+            <button class="tab-btn" data-tab="relatorios">
+                <i class="fas fa-chart-bar"></i> Relatórios
+            </button>
+        </nav>
+
+        <main class="main-content">
+            <!-- Seção de Metas -->
+            <div id="metas" class="tab-content active">
+                <div class="section-header">
+                    <h2>Metas</h2>
+                    <button class="btn btn-primary" onclick="showAddMetaModal()">
+                        <i class="fas fa-plus"></i> Nova Meta
+                    </button>
+                </div>
+                <div id="metas-list" class="items-list">
+                    <!-- As metas vão ser carregadas aqui -->
+                </div>
+            </div>
+
+            <!-- Seção de Tarefas -->
+            <div id="tarefas" class="tab-content">
+                <div class="section-header">
+                    <h2>Tarefas</h2>
+                    <button class="btn btn-primary" onclick="showAddTarefaModal()">
+                        <i class="fas fa-plus"></i> Nova Tarefa
+                    </button>
+                </div>
+                <div id="tarefas-list" class="items-list">
+                    <!-- As tarefas vão ser carregadas aqui -->
+                </div>
+            </div>
+
+            <!-- Seção de Lembretes -->
+            <div id="lembretes" class="tab-content">
+                <div class="section-header">
+                    <h2>Lembretes Semanais</h2>
+                    <button class="btn btn-primary" onclick="showAddLembreteModal()">
+                        <i class="fas fa-plus"></i> Novo Lembrete
+                    </button>
+                </div>
+                <div id="lembretes-list" class="items-list">
+                    <!-- Os lembretes vão ser carregadas aqui -->
+                </div>
+            </div>
+
+            <!-- Seção de Relatórios -->
+            <div id="relatorios" class="tab-content">
+                <div class="section-header">
+                    <h2>Relatórios Anuais</h2>
+                    <div class="report-controls">
+                        <input type="number" id="ano-relatorio" placeholder="Ano" min="2020" max="2030" value="2024">
+                        <button class="btn btn-primary" onclick="gerarRelatorio()">
+                            <i class="fas fa-chart-line"></i> Gerar Relatório
+                        </button>
+                    </div>
+                </div>
+                <div id="relatorio-content" class="report-content">
+                    <!-- Os relatórios serão exibidos aqui -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para Adicionar Meta -->
+    <div id="add-meta-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Meta</h3>
+                <span class="close" onclick="closeModal('add-meta-modal')">&times;</span>
+            </div>
+            <form id="add-meta-form">
+                <div class="form-group">
+                    <label for="meta-descricao">Descrição:</label>
+                    <input type="text" id="meta-descricao" required>
+                </div>
+                <div class="form-group">
+                    <label for="meta-categoria">Categoria:</label>
+                    <input type="text" id="meta-categoria" required>
+                </div>
+                <div class="form-group">
+                    <label for="meta-periodo">Período:</label>
+                    <select id="meta-periodo" required>
+                        <option value="0">Semanal</option>
+                        <option value="1">Mensal</option>
+                        <option value="2">Anual</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="meta-ano">Ano:</label>
+                    <input type="number" id="meta-ano" min="2020" max="2030" required>
+                </div>
+                <div class="form-group" id="meta-numero-group">
+                    <label for="meta-numero">Número:</label>
+                    <input type="number" id="meta-numero" min="1" max="52">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('add-meta-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar Tarefa -->
+    <div id="add-tarefa-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nova Tarefa</h3>
+                <span class="close" onclick="closeModal('add-tarefa-modal')">&times;</span>
+            </div>
+            <form id="add-tarefa-form">
+                <div class="form-group">
+                    <label for="tarefa-descricao">Descrição:</label>
+                    <input type="text" id="tarefa-descricao" required>
+                </div>
+                <div class="form-group">
+                    <label for="tarefa-categoria">Categoria:</label>
+                    <input type="text" id="tarefa-categoria" required>
+                </div>
+                <div class="form-group">
+                    <label for="tarefa-data">Data (dd/mm/aaaa):</label>
+                    <input type="text" id="tarefa-data" placeholder="dd/mm/aaaa" required>
+                </div>
+                <div class="form-group">
+                    <label for="tarefa-horario">Horário:</label>
+                    <input type="text" id="tarefa-horario" placeholder="08:00-09:00" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('add-tarefa-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar Lembrete -->
+    <div id="add-lembrete-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Novo Lembrete</h3>
+                <span class="close" onclick="closeModal('add-lembrete-modal')">&times;</span>
+            </div>
+            <form id="add-lembrete-form">
+                <div class="form-group">
+                    <label for="lembrete-descricao">Descrição:</label>
+                    <input type="text" id="lembrete-descricao" required>
+                </div>
+                <div class="form-group">
+                    <label for="lembrete-tipo">Tipo:</label>
+                    <select id="lembrete-tipo" required>
+                        <option value="0">Ligação</option>
+                        <option value="1">Reunião</option>
+                        <option value="2">Compra</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lembrete-dia">Dia da Semana:</label>
+                    <input type="text" id="lembrete-dia" placeholder="Segunda-feira" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('add-lembrete-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Item -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="edit-modal-title">Editar Item</h3>
+                <span class="close" onclick="closeModal('edit-modal')">&times;</span>
+            </div>
+            <form id="edit-form">
+                <div id="edit-form-content">
+                    <!-- O conteúdo vai ser preenchido dinamicamente -->
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('edit-modal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
