@@ -3,7 +3,7 @@
 
 #include <string>
 
-// Status específicos para Metas, conforme a especificação
+// Status específicos para Metas
 enum StatusMeta { SUCESSO, SEM_SUCESSO, PARCIALMENTE_ATINGIDA };
 
 // Período de tempo para a Meta

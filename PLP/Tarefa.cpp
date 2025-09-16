@@ -18,7 +18,7 @@ void Tarefa::atualizarStatus(StatusTarefa novo) {
 
 void Tarefa::exibir() {
     cout << "Tarefa: " << descricao
-         << " | Data: " << data // Exibindo a nova informação
+         << " | Data: " << data 
          << " | Horario: " << horario
          << " | Categoria: " << categoria
          << " | Status: " << statusTarefaParaString(status) << endl;

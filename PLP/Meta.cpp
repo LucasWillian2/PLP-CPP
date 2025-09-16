@@ -1,7 +1,6 @@
 #include "Meta.h"
 #include <iostream>
-#include <string> // Incluir para to_string
-
+#include <string> 
 using namespace std;
 
 // Implementação do construtor atualizado
@@ -11,7 +10,7 @@ Meta::Meta(string desc, string cat, PeriodoMeta p, int a, int num) {
     periodo = p;
     ano = a;
     numero = num;
-    status = PARCIALMENTE_ATINGIDA; // Um status inicial padrão
+    status = PARCIALMENTE_ATINGIDA; 
 }
 
 void Meta::atualizarStatus(StatusMeta novo) {

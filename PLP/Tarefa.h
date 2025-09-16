@@ -3,7 +3,7 @@
 
 #include <string>
 
-// Status específicos para Tarefas, conforme a especificação
+// Status específicos para Tarefas
 enum StatusTarefa { EXECUTADA, PARCIALMENTE_EXECUTADA, ADIADA, NAO_EXECUTADA };
 
 // Função auxiliar para exibir o status da tarefa
@@ -20,11 +20,11 @@ private:
     std::string descricao;
     std::string categoria;
     std::string horario;
-    std::string data; // Novo atributo para a data
+    std::string data; 
     StatusTarefa status;
 
 public:
-    // Construtor atualizado
+    
     Tarefa(std::string desc, std::string cat, std::string hora, std::string dt);
 
     void atualizarStatus(StatusTarefa novo);

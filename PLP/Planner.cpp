@@ -8,7 +8,7 @@
 
 using namespace std;
 
-// Métodos de Adicionar e Listar (já devem estar corretos)
+// Métodos de Adicionar e Listar 
 void Planner::adicionarMeta(const Meta& m) { metas.push_back(m); }
 void Planner::adicionarTarefa(const Tarefa& t) { tarefas.push_back(t); }
 
@@ -24,7 +24,7 @@ void Planner::listarTarefas() {
     for (int i = 0; i < tarefas.size(); ++i) { cout << "[" << i << "] "; tarefas[i].exibir(); }
 }
 
-// Métodos de Atualizar Status (já devem estar corretos)
+// Métodos de Atualizar Status 
 void Planner::atualizarStatusMeta(int indice, StatusMeta novo) {
     if (indice >= 0 && indice < metas.size()) { metas[indice].atualizarStatus(novo); }
     else { cout << "Erro: Indice de meta invalido!\n"; }
@@ -35,7 +35,7 @@ void Planner::atualizarStatusTarefa(int indice, StatusTarefa novo) {
     else { cout << "Erro: Indice de tarefa invalido!\n"; }
 }
 
-// ++ IMPLEMENTAÇÃO DE REMOVER E EDITAR ++
+// IMPLEMENTAÇÃO DE REMOVER E EDITAR 
 void Planner::removerMeta(int indice) {
     if (indice >= 0 && indice < metas.size()) {
         metas.erase(metas.begin() + indice);
